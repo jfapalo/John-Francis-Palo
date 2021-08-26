@@ -1,0 +1,24 @@
+inverse <- x$getInverse()
+    if (!is.null(inverse)) {
+      message("Getting cached data")
+      return(inverse)
+     }
+    mat <- x$get()
+    inverse <- solve(mat, ...)
+    x$setInverse(inverse)
+    inverse
+}
+
+my_matrix <- makeCacheMatrix(matrix(1:4, 2, 2))
+my_matrix$get()
+
+my_matrix$getInverse()
+cacheSolve(my_matrix)
+cacheSolve(my_matrix)
+my_matrix$getInverse()
+my_matrix$set(matrix(c(2, 2, 1, 4), 2, 2))
+my_matrix$get()
+my_matrix$getInverse()
+cacheSolve(my_matrix)
+cacheSolve(my_matrix)
+my_matrix$getInverse()
